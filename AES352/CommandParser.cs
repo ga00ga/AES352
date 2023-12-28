@@ -11,35 +11,18 @@ public class CommandParser
     private Graphics graphics;
     private Pen currentPen;
     private PointF currentPosition;
+    private bool fillEnabled = false;
 
     public CommandParser(TextBox codeTextBox, PictureBox displayArea)
     {
         this.codeTextBox = codeTextBox;
         this.displayArea = displayArea;
         this.graphics = displayArea.CreateGraphics();
-        this.currentPen = new Pen(Color.Black); 
-        this.currentPosition = new PointF(0, 0); 
+        this.currentPen = new Pen(Color.Black);
+        this.currentPosition = new PointF(0, 0);
     }
 
-    public class CommandParser
-    {
-        private TextBox codeTextBox;
-        private PictureBox displayArea;
-        private Graphics graphics;
-        private Pen currentPen;
-        private PointF currentPosition;
-        private bool fillEnabled = false;
-
-        public CommandParser(TextBox codeTextBox, PictureBox displayArea)
-        {
-            this.codeTextBox = codeTextBox;
-            this.displayArea = displayArea;
-            this.graphics = displayArea.CreateGraphics();
-            this.currentPen = new Pen(Color.Black);
-            this.currentPosition = new PointF(0, 0);
-        }
-
-        public void ExecuteCommand(string command)
+    public void ExecuteCommand(string command)
         {
             var parts = command.Split(' ');
             switch (parts[0].ToLower())
@@ -160,7 +143,7 @@ public class CommandParser
         private void Clear()
         {
             graphics.Clear(displayArea.BackColor);
-            currentPosition = new PointF(0, 0); 
+            currentPosition = new PointF(0, 0);
         }
 
         private void DrawRectangle(float width, float height)
@@ -203,11 +186,23 @@ public class CommandParser
             fillEnabled = state.ToLower() == "on";
         }
 
-        // Call this method when the form is closing or you need to release resources
-        public void Cleanup()
-        {
-            graphics.Dispose();
-            currentPen.Dispose();
-        }
+    public void SetupGraphics(PaintEventArgs e)
+    {
+        var g = e.Graphics;
+
+        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+        g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+
+
     }
-}
+
+
+    public void Cleanup()
+        {
+        if (graphics != null)
+            graphics.Dispose();
+        if (currentPen != null)
+            currentPen.Dispose();
+    }
+    }
