@@ -1,0 +1,45 @@
+
+<commands>
+    <command name="moveTo">
+        <summary>Shifts the pen to specified x and y coordinates.</summary>
+        <param name="x">Desired x-coordinate.</param>
+        <param name="y">Desired y-coordinate.</param>
+    </command>
+    <command name="drawTo">
+        <summary>Sketches a line from current to specified location.</summary>
+        <param name="x">End point x-coordinate for the line.</param>
+        <param name="y">End point y-coordinate for the line.</param>
+    </command>
+    <command name="clear">
+        <summary>Erases all current drawings from the canvas.</summary>
+    </command>
+    <command name="rectangle">
+        <summary>Sketches a rectangle at the pen's current position.</summary>
+        <param name="width">The rectangle's width.</param>
+        <param name="height">The rectangle's height.</param>
+    </command>
+    <command name="circle">
+        <summary>Draws a circle centered at the current pen location.</summary>
+        <param name="radius">Circle's radius length.</param>
+    </command>
+    <command name="triangle">
+        <summary>Depicts a triangle using three corner points.</summary>
+        <param name="x1">x-coordinate of the first corner.</param>
+        <param name="y1">y-coordinate of the first corner.</param>
+        <param name="x2">x-coordinate of the second corner.</param>
+        <param name="y2">y-coordinate of the second corner.</param>
+        <param name="x3">x-coordinate of the third corner.</param>
+        <param name="y3">y-coordinate of the third corner.</param>
+    </command>
+    <command name="color">
+        <summary>Alters the pen's color to the chosen one.</summary>
+        <param name="color">Chosen color for the pen.</param>
+    </command>
+    <command name="reset">
+        <summary>Resets the pen's position to the starting point.</summary>
+    </command>
+    <command name="fill">
+        <summary>Activates or deactivates shape filling mode.</summary>
+        <param name="state">Fill setting, either 'on' or 'off'.</param>
+    </command>
+</commands>
