@@ -1,4 +1,4 @@
-﻿namespace AES352
+namespace AES352
 {
     partial class Form1
     {
@@ -69,7 +69,7 @@
             commandTextBox.Name = "commandTextBox";
             commandTextBox.Size = new Size(400, 30);
             commandTextBox.TabIndex = 3;
-            commandTextBox.TextChanged += commandTextBox_TextChanged;
+            commandTextBox.KeyUp += new KeyEventHandler(commandTextBox_KeyUp);
             // 
             // displayArea
             // 
@@ -80,7 +80,7 @@
             displayArea.Size = new Size(495, 488);
             displayArea.TabIndex = 4;
             displayArea.TabStop = false;
-            displayArea.Click += displayArea_Click;
+            displayArea.Paint += displayArea_Paint;
             // 
             // Form1
             // 
