@@ -33,12 +33,14 @@ namespace AES352
             codeTextBox = new TextBox();
             commandTextBox = new TextBox();
             displayArea = new PictureBox();
+            loadButton = new Button();
+            saveButton = new Button();
             ((System.ComponentModel.ISupportInitialize)displayArea).BeginInit();
             SuspendLayout();
             // 
             // runButton
             // 
-            runButton.Location = new Point(12, 587);
+            runButton.Location = new Point(112, 579);
             runButton.Name = "runButton";
             runButton.Size = new Size(75, 39);
             runButton.TabIndex = 0;
@@ -47,7 +49,7 @@ namespace AES352
             // 
             // syntaxButton
             // 
-            syntaxButton.Location = new Point(109, 587);
+            syntaxButton.Location = new Point(326, 579);
             syntaxButton.Name = "syntaxButton";
             syntaxButton.Size = new Size(75, 39);
             syntaxButton.TabIndex = 1;
@@ -69,7 +71,7 @@ namespace AES352
             commandTextBox.Name = "commandTextBox";
             commandTextBox.Size = new Size(400, 30);
             commandTextBox.TabIndex = 3;
-            commandTextBox.KeyUp += new KeyEventHandler(commandTextBox_KeyUp);
+            commandTextBox.KeyUp += commandTextBox_KeyUp;
             // 
             // displayArea
             // 
@@ -82,6 +84,26 @@ namespace AES352
             displayArea.TabStop = false;
             displayArea.Paint += displayArea_Paint;
             // 
+            // loadButton
+            // 
+            loadButton.Location = new Point(18, 579);
+            loadButton.Name = "loadButton";
+            loadButton.Size = new Size(75, 39);
+            loadButton.TabIndex = 2;
+            loadButton.Text = "Load";
+            loadButton.UseVisualStyleBackColor = true;
+            loadButton.Click += LoadButton_Click;
+            // 
+            // saveButton
+            // 
+            saveButton.Location = new Point(223, 579);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(75, 39);
+            saveButton.TabIndex = 3;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += SaveButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -91,6 +113,8 @@ namespace AES352
             Controls.Add(syntaxButton);
             Controls.Add(codeTextBox);
             Controls.Add(commandTextBox);
+            Controls.Add(saveButton);
+            Controls.Add(loadButton);
             Controls.Add(displayArea);
             Name = "Form1";
             Text = "Graphical Programming Language";
@@ -102,6 +126,8 @@ namespace AES352
 
         private System.Windows.Forms.Button runButton;
         private System.Windows.Forms.Button syntaxButton;
+        private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.TextBox codeTextBox;
         private System.Windows.Forms.TextBox commandTextBox;
         private System.Windows.Forms.PictureBox displayArea;
