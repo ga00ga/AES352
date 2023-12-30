@@ -25,7 +25,8 @@ namespace AES352
         {
             try
             {
-                parser.ExecuteProgram();
+                string program = codeTextBox.Text; 
+                parser.ExecuteProgram(program);
             }
             catch (Exception ex)
             {
@@ -44,6 +45,37 @@ namespace AES352
                 MessageBox.Show("Syntax error: " + ex.Message, "Syntax Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+                saveFileDialog.DefaultExt = "txt";
+                saveFileDialog.AddExtension = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    parser.SaveProgram(saveFileDialog.FileName);
+                }
+            }
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+                openFileDialog.DefaultExt = "txt";
+                openFileDialog.AddExtension = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    parser.LoadProgram(openFileDialog.FileName);
+                }
+            }
+        }
+
 
         private void commandTextBox_KeyUp(object sender, KeyEventArgs e)
         {
