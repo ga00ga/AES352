@@ -130,6 +130,95 @@ public class CommandParserTests
     }
 
     [Test]
+    public void TestInvalidCommandException()
+    {
+        string command = "invalidCommand 10 20";
+        codeTextBox.Text = command;
+
+        Assert.Throws<ArgumentException>(() => commandParser.ExecuteProgram(command), "Invalid command did not throw an exception.");
+    }
+
+     [Test]
+    public void TestPenPositionAfterDrawing()
+    {
+        string command = "moveto 10 10\ndrawto 20 20";
+        codeTextBox.Text = command;
+        commandParser.ExecuteProgram(command);
+        PointF expectedPosition = new PointF(20, 20);
+
+        Assert.AreEqual(expectedPosition, commandParser.CurrentPosition, "Pen position not updated correctly after drawing.");
+    }
+
+    [Test]
+public void TestRectangleFill()
+{
+    string command = "fill on\nrectangle 50 30";
+    codeTextBox.Text = command;
+    commandParser.ExecuteProgram(command);
+
+    Bitmap bmp = (Bitmap)displayArea.Image;
+    Color expectedColor = Color.Black; // Assuming default pen color is black and fill is on
+    bool isFilled = true;
+
+    // Check if the rectangle area is filled
+    for (int x = 0; x < 50; x++)
+    {
+        for (int y = 0; y < 30; y++)
+        {
+            if (bmp.GetPixel(x, y) != expectedColor)
+            {
+                isFilled = false;
+                break;
+            }
+        }
+        if (!isFilled) break;
+    }
+
+    Assert.IsTrue(isFilled, "Rectangle fill did not work as expected.");
+}
+
+[Test]
+public void TestCircleFill()
+{
+    float radius = 20;
+    string command = $"fill on\ncircle {radius}";
+    codeTextBox.Text = command;
+    commandParser.ExecuteProgram(command);
+
+    Bitmap bmp = (Bitmap)displayArea.Image;
+    Color expectedColor = Color.Black;
+    bool isFilled = true;
+
+    // Check if the circle area is filled
+    for (int x = 0; x < radius * 2; x++)
+    {
+        for (int y = 0; y < radius * 2; y++)
+        {
+            if (bmp.GetPixel(x, y) != expectedColor)
+            {
+                isFilled = false;
+                break;
+            }
+        }
+        if (!isFilled) break;
+    }
+
+    Assert.IsTrue(isFilled, "Circle fill did not work as expected.");
+}
+
+
+    [Test]
+    public void TestPenPositionAfterDrawing()
+    {
+        string command = "moveto 10 10\ndrawto 20 20";
+        codeTextBox.Text = command;
+        commandParser.ExecuteProgram(command);
+        PointF expectedPosition = new PointF(20, 20);
+
+        Assert.AreEqual(expectedPosition, commandParser.CurrentPosition, "Pen position not updated correctly after drawing.");
+    }
+
+    [Test]
     public void TestTriangleCommand()
     {
         string command = "triangle 10 10 50 10 30 40"; // Vertices of the triangle
